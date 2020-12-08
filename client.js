@@ -40,4 +40,59 @@ const employees = [
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
+
+
+function processEmployee( employee ) {
+  let processedEmployee = {
+    name: employee.name,
+    bonusPercentage: 0,
+    totalCompensation: 0,
+    totalBonus: 0,
+  }
+      if (employee.reviewRating <= 2) {
+       processedEmployee.bonusPercentage = 0;
+    } if (employee.reviewRating === 3) {
+       processedEmployee.bonusPercentage = 0.04;
+    } if (employee.reviewRating === 4){
+       processedEmployee.bonusPercentage = 0.06;
+    } if (employee.reviewRating === 5){
+       processedEmployee.bonusPercentage = 0.1;
+    } if (employee.employeeNumber.length === 4){
+       processedEmployee.bonusPercentage += 0.05;
+    } if(employee.annualSalary > 65000){
+       processedEmployee.bonusPercentage -= 0.01;
+    } if (processedEmployee.bonusPercentage > 0.13){
+      processedEmployee.bonusPercentage = 0.13;
+    } if (processedEmployee.bonusPercentage < 0) {
+      processedEmployee.bonusPercentage = 0;
+    }
+
+    processedEmployee.totalBonus = parseInt(employee.annualSalary) * processedEmployee.bonusPercentage;
+
+    processedEmployee.totalCompensation = processedEmployee.totalBonus + parseInt(employee.annualSalary);
+
+    
+    
+  return processedEmployee;
+  }
+
+
+  // function displayEmployees(){
+  //   let el = $('#salaryInformation')
+  //   el.empty();
+  //   for ( information of processedEmployee) {
+  //     el.append(`<li>` + information.name + ' ' + information.bonusPercentage + ' '
+  //                 + information.totalCompensation + ' ' + information.totalBonus);
+  //   }
+  // }
+  // displayEmployees();
+
+
+
+console.log('Testing', processEmployee(employees[0]));
+console.log('Testing', processEmployee(employees[1]));
+console.log('Testing', processEmployee(employees[2]));
+console.log('Testing', processEmployee(employees[3]));
+console.log('Testing', processEmployee(employees[4]));
+
 console.log( employees );
